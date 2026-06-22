@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estética Automotiva | Cuidado Premium em Taubaté</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -438,11 +438,293 @@
             transform: scale(1.1) rotate(10deg);
         }
 
+        /* ================= STYLE EXCLUSIVO: MODAL & CHECKOUT DINÂMICO ================= */
+        .custom-checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .custom-checkout-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .custom-checkout-modal.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            color: #9CA3AF;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--dark);
+        }
+
+        .modal-header {
+            background: #F9FAFB;
+            padding: 25px 20px;
+            text-align: center;
+            border-b: 1px solid #E5E7EB;
+        }
+
+        .modal-header h3 {
+            color: var(--dark);
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .modal-header p {
+            font-size: 0.85rem;
+            color: #6B7280;
+        }
+
+        .modal-summary-bar {
+            background: #EEF2F6;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .modal-summary-bar .item-name {
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        .modal-summary-bar .item-price {
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .modal-body {
+            padding: 25px 20px;
+        }
+
+        .checkout-step {
+            display: none;
+        }
+
+        .checkout-step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4B5563;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--blue-light);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-submit-checkout {
+            width: 100%;
+            background: #059669;
+            color: var(--white);
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit-checkout:hover {
+            background: #047857;
+        }
+
+        /* Loader */
+        .loader-wrapper {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid #E5E7EB;
+            border-top: 4px solid #059669;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Pix Screen */
+        .pix-badge-container {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .pix-countdown-badge {
+            background: #FEF3C7;
+            border: 1px solid #FCD34D;
+            color: #92400E;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .qr-code-box {
+            background: #F9FAFB;
+            border: 1px dashed #D1D5DB;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 0;
+        }
+
+        .qr-code-box img {
+            width: 180px;
+            height: 180px;
+            display: block;
+        }
+
+        .copia-cola-wrapper {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .copia-cola-container {
+            display: flex;
+            margin-top: 5px;
+        }
+
+        .copia-cola-input {
+            flex: 1;
+            padding: 10px 12px;
+            background: #F3F4F6;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px 0 0 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #4B5563;
+            outline: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-copy {
+            background: #E5E7EB;
+            border: 1px solid #D1D5DB;
+            border-left: none;
+            padding: 0 15px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: var(--transition);
+            color: #374151;
+        }
+
+        .btn-copy:hover {
+            background: #D1D5DB;
+        }
+
+        .status-waiting-box {
+            margin-top: 25px;
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            color: #1E40AF;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ping-circle {
+            width: 8px;
+            height: 8px;
+            background-color: #3B82F6;
+            border-radius: 50%;
+            animation: pingAnimation 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes pingAnimation {
+            0% { transform: scale(1); opacity: 1; }
+            70%, 100% { transform: scale(2.5); opacity: 0; }
+        }
+
         /* ================= RESPONSIVO ================= */
         @media (max-width: 992px) {
             .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
             .grid-2 { grid-template-columns: 1fr; }
-            nav ul { display: none; /* Simplificado para mobile */ }
+            nav ul { display: none; }
         }
 
         @media (max-width: 768px) {
@@ -465,7 +747,9 @@
                     <li><a href="#localizacao">Localização</a></li>
                 </ul>
             </nav>
-            <a href="https://wa.me/5512974063074?text=Olá,%20gostaria%20de%20agendar%20um%20serviço%20na%20Estética%20Automobilismo!" target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> Pedir Agora</a>
+            <button class="btn open-checkout-btn" data-service="Combo Full Detail Premium" data-price="650.00">
+                <i class="fa-solid fa-cart-shopping"></i> Comprar Agora
+            </button>
         </div>
     </header>
 
@@ -473,9 +757,9 @@
         <div class="container">
             <h1 class="bebas">Eleve o Padrão do Seu Veículo</h1>
             <p>A estética automotiva premium de Taubaté. Especialistas em devolver o brilho de fábrica e proteger o que você mais ama dirigir.</p>
-            <a href="https://wa.me/5512974063074?text=Olá,%20gostaria%20de%20agendar%20um%20serviço%20na%20Estética%20Automobilismo!" target="_blank" class="btn" style="font-size: 1.2rem; padding: 15px 35px;">
-                <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
-            </a>
+            <button class="btn open-checkout-btn" data-service="Pacote Customizado Premium" data-price="399.90" style="font-size: 1.2rem; padding: 15px 35px;">
+                <i class="fa-solid fa-bolt"></i> Adquirir Pacote Premium
+            </button>
         </div>
     </section>
 
@@ -515,8 +799,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Lavagens Detail</h3>
                         <p>Limpeza técnica minuciosa que não agride a pintura, removendo contaminações profundas.</p>
-                        <span class="price">A partir de R$ 120,00</span>
-                        <a href="https://wa.me/5512974063074?text=Quero%20agendar%20uma%20Lavagem%20Detail!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 120,00</span>
+                        <button class="btn open-checkout-btn" data-service="Lavagem Detail" data-price="120.00">Pedir</button>
                     </div>
                 </div>
                 <div class="card">
@@ -524,8 +808,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Polimento de Pintura</h3>
                         <p>Correção de verniz, remoção de micro-riscos e teias de aranha. Brilho espelhado restaurado.</p>
-                        <span class="price">A partir de R$ 450,00</span>
-                        <a href="https://wa.me/5512974063074?text=Quero%20fazer%20um%20Polimento%20de%20Pintura!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 450,00</span>
+                        <button class="btn open-checkout-btn" data-service="Polimento de Pintura" data-price="450.00">Pedir</button>
                     </div>
                 </div>
                 <div class="card">
@@ -533,8 +817,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Vitrificação de Pintura</h3>
                         <p>Aplicação de nano-coating (Ceramic) para proteção de até 3 anos contra raios UV e sujeiras.</p>
-                        <span class="price">A partir de R$ 900,00</span>
-                        <a href="https://wa.me/5512974063074?text=Tenho%20interesse%20na%20Vitrificação%20de%20Pintura!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 900,00</span>
+                        <button class="btn open-checkout-btn" data-service="Vitrificação de Pintura" data-price="900.00">Pedir</button>
                     </div>
                 </div>
                 <div class="card">
@@ -542,8 +826,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Hidratação de Couro</h3>
                         <p>Limpeza profunda e nutrição dos bancos de couro, evitando ressecamento e rachaduras.</p>
-                        <span class="price">A partir de R$ 180,00</span>
-                        <a href="https://wa.me/5512974063074?text=Preciso%20de%20Hidratação%20de%20Couro!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 180,00</span>
+                        <button class="btn open-checkout-btn" data-service="Hidratação de Couro" data-price="180.00">Pedir</button>
                     </div>
                 </div>
                 <div class="card">
@@ -551,8 +835,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Revitalização de Plásticos</h3>
                         <p>Restauração da cor original dos plásticos internos e externos, com proteção UV duradoura.</p>
-                        <span class="price">A partir de R$ 100,00</span>
-                        <a href="https://wa.me/5512974063074?text=Gostaria%20de%20Revitalizar%20os%20plásticos%20do%20meu%20carro!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 100,00</span>
+                        <button class="btn open-checkout-btn" data-service="Revitalização de Plásticos" data-price="100.00">Pedir</button>
                     </div>
                 </div>
                 <div class="card">
@@ -560,8 +844,8 @@
                     <div class="card-content">
                         <h3 class="bebas">Oxi-sanitização</h3>
                         <p>Eliminação de fungos, bactérias e odores (como cigarro) do interior e ar-condicionado usando Ozônio.</p>
-                        <span class="price">A partir de R$ 90,00</span>
-                        <a href="https://wa.me/5512974063074?text=Quero%20agendar%20uma%20Oxi-sanitização!" target="_blank" class="btn">Pedir</a>
+                        <span class="price">R$ 90,00</span>
+                        <button class="btn open-checkout-btn" data-service="Oxi-sanitização" data-price="90.00">Pedir</button>
                     </div>
                 </div>
             </div>
@@ -633,7 +917,7 @@
                 <p><i class="fa-solid fa-location-dot"></i> <strong>Endereço:</strong> Vila São José, Taubaté - SP</p>
                 <p><i class="fa-solid fa-clock"></i> <strong>Horário:</strong> Seg a Sex das 8h às 18h | Sáb das 8h às 12h</p>
                 <br>
-                <a href="https://wa.me/5512974063074?text=Estou%20indo%20até%20a%20Estética%20Automobilismo,%20podem%20me%20enviar%20a%20localização%20exata?" target="_blank" class="btn">Agendar Visita</a>
+                <button class="btn open-checkout-btn" data-service="Agendamento Visita / Avaliação" data-price="0.00">Agendar Visita</button>
             </div>
             <div class="mapa">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14674.344485501868!2d-45.568478499999996!3d-23.0481878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf84c8a2bffff%3A0x8f2d8a4b609c13b!2sVila%20Sao%20Jose%2C%20Taubat%C3%A9%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1680000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -645,9 +929,9 @@
         <div class="container">
             <h2 class="bebas">O Seu Carro Merece o Melhor</h2>
             <p>Não entregue as chaves do seu veículo para amadores. Fale com nossos especialistas e descubra o tratamento ideal para a sua máquina.</p>
-            <a href="https://wa.me/5512974063074?text=Olá,%20gostaria%20de%20agendar%20um%20serviço%20na%20Estética%20Automobilismo!" target="_blank" class="btn">
-                FALAR COM ESPECIALISTA AGORA
-            </a>
+            <button class="btn open-checkout-btn" data-service="Tratamento Especial Detail" data-price="499.00" style="background: var(--dark); border: 2px solid var(--purple);">
+                <i class="fa-solid fa-basket-shopping"></i> COMPRAR TRATAMENTO AGORA
+            </button>
         </div>
     </section>
 
@@ -679,7 +963,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Estética Automotiva. Todos os direitos reservados.
+                © 2026 Estética Automotiva. Todos os direitos reservados.
             </div>
         </div>
     </footer>
@@ -688,23 +972,96 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+
+    <div id="checkoutModal" class="custom-checkout-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="closeCheckoutBtn">&times;</button>
+            
+            <div class="modal-header">
+                <h3>Checkout Seguro</h3>
+                <p>Preencha os dados abaixo para gerar seu Pix</p>
+            </div>
+
+            <div class="modal-summary-bar">
+                <span class="item-name" id="modalItemName">Serviço</span>
+                <span class="item-price" id="modalItemPrice">R$ 0,00</span>
+            </div>
+
+            <div class="modal-body">
+                <div id="stepForm" class="checkout-step active">
+                    <form id="checkoutMainForm">
+                        <div class="form-group">
+                            <label for="usr_name">Nome Completo</label>
+                            <input type="text" id="usr_name" required placeholder="Ex: João Silva dos Santos">
+                        </div>
+                        <div class="form-group">
+                            <label for="usr_email">E-mail</label>
+                            <input type="email" id="usr_email" required placeholder="Ex: joao@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="usr_cpf">CPF</label>
+                            <input type="text" id="usr_cpf" required placeholder="000.000.000-00" maxlength="14">
+                        </div>
+                        <button type="submit" class="btn-submit-checkout">
+                            <i class="fa-brands fa-pix"></i> Gerar Pagamento Pix
+                        </button>
+                    </form>
+                </div>
+
+                <div id="stepLoader" class="checkout-step">
+                    <div class="loader-wrapper">
+                        <div class="spinner"></div>
+                        <p style="font-weight:600; color:var(--dark);">Processando Pedido...</p>
+                        <p style="font-size:0.8rem; color:#6B7280; margin-top:5px;">Conectando-se ao provedor de pagamento com segurança.</p>
+                    </div>
+                </div>
+
+                <div id="stepPix" class="checkout-step" style="text-align: center;">
+                    <div class="pix-badge-container">
+                        <div class="pix-countdown-badge">
+                            <i class="fa-regular fa-clock"></i> Aguardando Pagamento: <span id="pixCountdownText">15:00</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size:0.9rem; font-weight:600; color:#374151;">Total a pagar: <span id="pixValueText" style="color:var(--purple); font-weight:700;">R$ 0,00</span></p>
+
+                    <div class="qr-code-box">
+                        <img id="qrCodeDisplay" src="" alt="QR Code Pix">
+                    </div>
+
+                    <div class="copia-cola-wrapper">
+                        <label style="font-size: 0.75rem; font-weight: 700; color:#4B5563; uppercase">Código Pix Copia e Cola</label>
+                        <div class="copia-cola-container">
+                            <input type="text" id="pixCopiaColaInput" readonly class="copia-cola-input" value="">
+                            <button type="button" class="btn-copy" id="copyPixBtn" title="Copiar código">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="status-waiting-box">
+                        <div class="ping-circle"></div>
+                        Aguardando confirmação do pagamento...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Garante que o scroll suave funcione mesmo em iframes ou ambientes com restrições de CSS nativo
-            const anchors = document.querySelectorAll('a[href^="#"]');
             
+            // --- 1. CONFIGURAÇÕES DO SCROLL SUAVE ORIGINAL ---
+            const anchors = document.querySelectorAll('a[href^="#"]');
             for (let anchor of anchors) {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href');
-                    
-                    // Ignora links vazios ou apenas '#'
                     if (targetId === '#' || targetId === '') return;
-                    
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
                         e.preventDefault();
-                        // Compensar a altura do header fixo (aprox 70px)
                         const headerOffset = 70;
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -715,6 +1072,191 @@
                         });
                     }
                 });
+            }
+
+            // --- 2. GERENCIAMENTO ELEMENTOS DO CHECKOUT ---
+            const checkoutModal = document.getElementById('checkoutModal');
+            const closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
+            const checkoutMainForm = document.getElementById('checkoutMainForm');
+            const cpfInput = document.getElementById('usr_cpf');
+            
+            const stepForm = document.getElementById('stepForm');
+            const stepLoader = document.getElementById('stepLoader');
+            const stepPix = document.getElementById('stepPix');
+
+            const modalItemName = document.getElementById('modalItemName');
+            const modalItemPrice = document.getElementById('modalItemPrice');
+            const pixValueText = document.getElementById('pixValueText');
+            const pixCopiaColaInput = document.getElementById('pixCopiaColaInput');
+            const qrCodeDisplay = document.getElementById('qrCodeDisplay');
+            const copyPixBtn = document.getElementById('copyPixBtn');
+            const pixCountdownText = document.getElementById('pixCountdownText');
+
+            let activeService = { name: '', price: '0.00' };
+            let countdownInterval = null;
+
+            // --- 3. MAPEAMENTO DINÂMICO DOS BOTÕES DE COMPRA ---
+            const buyButtons = document.querySelectorAll('.open-checkout-btn');
+            buyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Captura propriedades configuradas no elemento clicado
+                    activeService.name = this.getAttribute('data-service') || 'Serviço Estética';
+                    activeService.price = parseFloat(this.getAttribute('data-price') || '0.00').toFixed(2);
+
+                    // Inicializa os textos da Modal com as informações capturadas
+                    modalItemName.textContent = activeService.name;
+                    modalItemPrice.textContent = `R$ ${parseFloat(activeService.price).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+                    
+                    // Reseta os passos visuais da Modal
+                    stepForm.classList.add('active');
+                    stepLoader.classList.remove('active');
+                    stepPix.classList.remove('active');
+                    checkoutMainForm.reset();
+
+                    if(countdownInterval) clearInterval(countdownInterval);
+
+                    // Abre a Janela de Checkout
+                    checkoutModal.classList.add('active');
+                });
+            });
+
+            // Fechar Modal
+            closeCheckoutBtn.addEventListener('click', () => {
+                checkoutModal.classList.remove('active');
+                if(countdownInterval) clearInterval(countdownInterval);
+            });
+
+            checkoutModal.addEventListener('click', function(e) {
+                if (e.target === checkoutModal) {
+                    checkoutModal.classList.remove('active');
+                    if(countdownInterval) clearInterval(countdownInterval);
+                }
+            });
+
+            // --- 4. MÁSCARA AUTOMÁTICA DE FORMATAÇÃO DE CPF ---
+            cpfInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, ''); // Remove tudo o que não é dígito
+                
+                if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+                if (value.length > 6) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                if (value.length > 9) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+                
+                e.target.value = value;
+            });
+
+            // --- 5. CONTROLE DE SUBMISSÃO E INTEGRAÇÃO DO BACKEND ---
+            checkoutMainForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const cleanCpf = cpfInput.value.replace(/\D/g, '');
+                
+                // Payload limpo estruturado pronto para envio via API
+                const payload = {
+                    customer: {
+                        name: document.getElementById('usr_name').value,
+                        email: document.getElementById('usr_email').value,
+                        cpf: cleanCpf
+                    },
+                    product: {
+                        name: activeService.name,
+                        price: parseFloat(activeService.price)
+                    }
+                };
+
+                // Transição visual de Carregamento
+                stepForm.classList.remove('active');
+                stepLoader.classList.add('active');
+
+                /* =========================================================================
+                   ⚠️ COMO CONECTAR COM O SEU BACKEND (MERCADO PAGO, ASAAS, PUGAR, ETC.) ⚠️
+                   =========================================================================
+                   Insira as chaves de acesso apenas no servidor (Node.js, PHP, Python) para 
+                   evitar fraudes e manter seguras as credenciais de produção do seu Gateway.
+
+                   Exemplo real de requisição para o seu servidor:
+                   
+                   fetch('https://api.seusite.com.br/checkout/gerar-pix', {
+                       method: 'POST',
+                       headers: { 'Content-Type': 'application/json' },
+                       body: JSON.stringify(payload)
+                   })
+                   .then(res => res.json())
+                   .then(data => {
+                       // Onde 'data.emv_payload' seria a string copia e cola retornado pelo gateway
+                       pixCopiaColaInput.value = data.emv_payload;
+                       qrCodeDisplay.src = `data:image/jpeg;base64,${data.qrcode_base64}`;
+                       
+                       stepLoader.classList.remove('active');
+                       stepPix.classList.add('active');
+                       startCountdown(15 * 60);
+                   })
+                   .catch(err => {
+                       alert('Erro ao gerar Pix. Tente novamente.');
+                       stepLoader.classList.remove('active');
+                       stepForm.classList.add('active');
+                   });
+                ============================================================================ */
+
+                // MOCK ASSÍNCRONO: Simula o tempo de resposta da API (1.8 segundos)
+                setTimeout(() => {
+                    // Monta string estática padrão BRCode baseada na especificação do BACEN
+                    const mockPixCode = `00020126360014BR.GOV.BCB.PIX0114+55129740630745204000053039865405${parseFloat(activeService.price).toFixed(2)}5802BR5925EsteticaAutomotivaTaubate6008TAUBATE62070503***6304A3B2`;
+                    
+                    pixCopiaColaInput.value = mockPixCode;
+                    pixValueText.textContent = `R$ ${parseFloat(activeService.price).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+                    
+                    // Renderiza imagem limpa via API geradora de QR Codes pública estável
+                    qrCodeDisplay.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(mockPixCode)}`;
+
+                    // Atualiza a tela exibindo os dados do PIX
+                    stepLoader.classList.remove('active');
+                    stepPix.classList.add('active');
+
+                    // Inicia o contador de 15 minutos
+                    startCountdown(15 * 60);
+                }, 1800);
+            });
+
+            // --- 6. FUNÇÃO AUXILIAR: BOTÃO COPIAR (CLIPBOARD) ---
+            copyPixBtn.addEventListener('click', function() {
+                pixCopiaColaInput.select();
+                pixCopiaColaInput.setSelectionRange(0, 99999); // Suporte para iOS/Mobile
+
+                navigator.clipboard.writeText(pixCopiaColaInput.value).then(() => {
+                    // Feedback visual no ícone de cópia
+                    const originalInner = copyPixBtn.innerHTML;
+                    copyPixBtn.innerHTML = '<i class="fa-solid fa-check" style="color: #059669;"></i>';
+                    copyPixBtn.style.background = '#D1FAE5';
+                    
+                    setTimeout(() => {
+                        copyPixBtn.innerHTML = originalInner;
+                        copyPixBtn.style.background = '#E5E7EB';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao acessar Área de Transferência: ', err);
+                });
+            });
+
+            // --- 7. FUNÇÃO AUXILIAR: TIMER REGRESSIVO DO PIX ---
+            function startCountdown(durationInSeconds) {
+                let timer = durationInSeconds, minutes, seconds;
+                
+                countdownInterval = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    pixCountdownText.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        clearInterval(countdownInterval);
+                        pixCountdownText.textContent = "EXPIRADO";
+                    }
+                }, 1000);
             }
         });
     </script>
